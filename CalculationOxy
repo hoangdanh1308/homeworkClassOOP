@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <math.h>
+
+class Point{
+    private:
+    int coordinatesX;
+    int coordinatesY;
+    public:
+    Point();
+    void setPoint();
+    int getCoordinatesX();
+    int getCoordinatesY();
+};
+
+Point::Point(){
+    Point::coordinatesX = 0;
+    Point::coordinatesY = 0;
+}
+
+void Point::setPoint(){
+    printf("enter coordinatesX:\n");
+    scanf("%d",&(Point::coordinatesX));
+    printf("enter coordinatesY:\n");
+    scanf("%d",&(Point::coordinatesY));
+}
+
+int Point::getCoordinatesX(){
+    return Point::coordinatesX;
+}
+int Point::getCoordinatesY(){
+    return Point::coordinatesY;
+}
+
+class CalculationOxy{
+    private:
+    Point pointA;
+    Point pointB;
+    Point pointC;
+    float lenghtAB;
+    float lenghtAC;
+    float lenghtBC;
+    public:
+    void setCalculationOxy();
+    float getDistance(Point pointAA, Point pointBB);
+    float getAcreage();
+    float getPerimeter();
+};
+
+void CalculationOxy::setCalculationOxy(){
+int numPoint;
+printf("enter number of point (2 or 3):\n");
+scanf("%d",&numPoint);
+if(numPoint == 2){
+    pointA.setPoint();
+    pointB.setPoint();
+} else{
+    pointA.setPoint();
+    pointB.setPoint();
+    pointC.setPoint();
+}
+}
+
+float CalculationOxy::getDistance(Point pointAA, Point pointBB){
+    return sqrt((pointAA.getCoordinatesX() - pointBB.getCoordinatesX())*(pointAA.getCoordinatesX() - pointBB.getCoordinatesX()) + (pointAA.getCoordinatesY() - pointBB.getCoordinatesY())*(pointAA.getCoordinatesY() - pointBB.getCoordinatesY()));
+}
+
+float CalculationOxy::getPerimeter(){
+    CalculationOxy::lenghtAB = CalculationOxy::getDistance(CalculationOxy::pointA, CalculationOxy::pointB);
+    CalculationOxy::lenghtAC = CalculationOxy::getDistance(CalculationOxy::pointA, CalculationOxy::pointC);
+    CalculationOxy::lenghtBC = CalculationOxy::getDistance(CalculationOxy::pointB, CalculationOxy::pointC);
+    return (CalculationOxy::lenghtAB + CalculationOxy::lenghtAC + CalculationOxy::lenghtBC);
+}
+
+float CalculationOxy::getAcreage(){
+    float p = CalculationOxy::getPerimeter()/2;
+    return sqrt(p*(p-CalculationOxy::lenghtAB)*(p-CalculationOxy::lenghtAC)*(p-CalculationOxy::lenghtBC));
+}
+
+int main(int argc, char const *argv[])
+{
+    CalculationOxy ABC;
+    ABC.setCalculationOxy();
+    printf("Perimeter is : %f \n",ABC.getPerimeter());
+    printf("Acreage is : %f",ABC.getAcreage());
+    return 0;
+}
