@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <math.h>
+
+class Rectangle{
+    private:
+    float length;
+    float width;
+
+    public:
+    Rectangle(float length, float width);
+    float getPerimeter();
+    float getAcreage();
+    float getDiagonal();
+    bool checkSquare();
+};
+
+Rectangle::Rectangle(float length, float width){
+    Rectangle::length = length;
+    Rectangle::width = width;
+}
+
+float Rectangle::getPerimeter(){
+    if (Rectangle::length != 0 && Rectangle::width != 0){
+        return (Rectangle::length + Rectangle::width)*2;
+    }
+}
+
+float Rectangle::getAcreage(){
+    if (Rectangle::length != 0 && Rectangle::width != 0){
+        return Rectangle::length*Rectangle::width;
+    }
+}
+
+float Rectangle::getDiagonal(){
+     if (Rectangle::length != 0 && Rectangle::width != 0){
+        return sqrt(Rectangle::length*Rectangle::length + Rectangle::width*Rectangle::width);
+    }
+}
+
+bool Rectangle::checkSquare(){
+    if (Rectangle::length == Rectangle::width){
+        return true;
+    } else return false;
+}
+
+int main(int argc, char const *argv[])
+{
+    Rectangle ABCD(2.2,2.2);
+    printf("Perimeter of rectangle ABCD is %f\n",ABCD.getPerimeter());
+    printf("Acreage of rectangle ABCD is %f\n",ABCD.getAcreage());
+    printf("Diagonal of rectangle ABCD is %f\n",ABCD.getDiagonal());
+    if(ABCD.checkSquare()){
+        printf("ABCD is a square");
+    } else printf("ABCD isn't a square");
+    return 0;
+}
