@@ -1,0 +1,89 @@
+#include <stdio.h>
+
+class Fraction{
+    public:
+    int numerator;
+    int denominator;
+    public:
+    Fraction();
+    Fraction(int numerator, int denominator);
+    void getFraction();
+};
+
+Fraction::Fraction(){
+    Fraction::numerator = 0;
+    Fraction::denominator = 0;
+}
+Fraction::Fraction(int numerator, int denominator){
+    Fraction::numerator = numerator;
+    Fraction::denominator = denominator;
+}
+void Fraction::getFraction(){
+    printf("%d/%d\n",Fraction::numerator,Fraction::denominator);
+}
+
+class FractionCalculation{
+    private:
+    Fraction fraction1;
+    Fraction fraction2;
+    public:
+    FractionCalculation(Fraction fraction1, Fraction fraction2);
+    Fraction sumTwoFractions();
+    Fraction subtractTwoFractions();
+    Fraction multiplyTwoFractions();
+    Fraction divideTwoFractions();
+};
+
+FractionCalculation::FractionCalculation(Fraction fraction1, Fraction fraction2){
+    FractionCalculation::fraction1 = fraction1;
+    FractionCalculation::fraction2 = fraction2;
+}
+
+Fraction FractionCalculation::sumTwoFractions(){
+    Fraction tempFraction;
+    tempFraction.numerator = (FractionCalculation::fraction1.numerator) * (FractionCalculation::fraction2.denominator) + (FractionCalculation::fraction1.denominator) * (FractionCalculation::fraction2.numerator);
+    tempFraction.denominator = (FractionCalculation::fraction1.denominator) * (FractionCalculation::fraction2.denominator);
+    return tempFraction;
+}
+
+Fraction FractionCalculation::subtractTwoFractions(){
+    Fraction tempFraction;
+    tempFraction.numerator = FractionCalculation::fraction1.numerator * FractionCalculation::fraction2.denominator - FractionCalculation::fraction1.denominator * FractionCalculation::fraction2.numerator;
+    tempFraction.denominator = FractionCalculation::fraction1.denominator * FractionCalculation::fraction2.denominator;
+    return tempFraction;
+}
+
+Fraction FractionCalculation::multiplyTwoFractions(){
+    Fraction tempFraction;
+    tempFraction.numerator = FractionCalculation::fraction1.numerator*FractionCalculation::fraction2.numerator;
+    tempFraction.denominator = FractionCalculation::fraction1.denominator*FractionCalculation::fraction2.denominator;
+    return tempFraction;
+}
+
+Fraction FractionCalculation::divideTwoFractions(){
+    Fraction tempFraction;
+    tempFraction.numerator = FractionCalculation::fraction1.numerator*FractionCalculation::fraction2.denominator;
+    tempFraction.denominator = FractionCalculation::fraction1.denominator*FractionCalculation::fraction2.numerator;
+    return tempFraction;
+}
+
+int main(int argc, char const *argv[])
+{
+    Fraction a(2 ,3);
+    Fraction b(1, 2);
+    FractionCalculation calculation(a,b);
+    Fraction result;
+    result = calculation.sumTwoFractions();
+    printf("sum of Two Fractions is: ");
+    result.getFraction();
+    result = calculation.subtractTwoFractions();
+    printf("subtract Two Fractions is: ");
+    result.getFraction();
+    result = calculation.multiplyTwoFractions();
+    printf("multiply Two Fractions is: ");
+    result.getFraction();
+    result = calculation.divideTwoFractions();
+    printf("divide Two Fractions is: ");
+    result.getFraction();
+    return 0;
+}
