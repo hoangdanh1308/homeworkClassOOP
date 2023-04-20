@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+
+class roundShape{
+    private:
+    float radius;
+    public:
+    roundShape(float radius);
+    float getPerimeter();
+    float getAcreage();
+};
+
+roundShape::roundShape(float radius){
+    roundShape::radius = radius;
+}
+
+float roundShape::getPerimeter(){
+    if(roundShape::radius != 0){
+    return 2*M_PI*roundShape::radius;
+    }else printf("enter radius\n");
+}
+
+float roundShape::getAcreage(){
+    if(roundShape::radius != 0){
+    return M_PI*roundShape::radius*roundShape::radius;
+    }else printf("enter radius\n");
+}
+
+
+int main(int argc, char const *argv[])
+{
+    roundShape circleK(4.0);
+    printf("Perimeter of circleK roundShape is %f\n",circleK.getPerimeter());
+    printf("Acreage of circleK roundShape is %f\n",circleK.getAcreage());
+    return 0;
+}
