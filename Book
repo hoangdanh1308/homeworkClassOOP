@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+class BankAccount{
+    private:
+    static int count;
+    int accNumber;
+    char accName[20];
+    int accBalance;
+    public:
+    BankAccount();
+    void setBankAcc();
+    void withdrawalAcc();
+    void paymentAcc();
+    void checkBalance();
+};
+
+BankAccount::BankAccount(){
+    BankAccount::accNumber = 0;
+    BankAccount::accBalance = 0; 
+}
+
+int BankAccount::count = 1;
+void BankAccount::setBankAcc(){
+    printf("**creating a bank account**\n enter account name:\n");
+    scanf("%s",BankAccount::accName);
+    BankAccount::accNumber = count;
+    count ++;
+    BankAccount::accBalance = 0; 
+    printf("hello %s, your bank account has been created, account number is %d, balance is %d\n",BankAccount::accName,BankAccount::accNumber,BankAccount::accBalance);
+}
+
+void BankAccount::paymentAcc(){
+    int payment;
+    printf("enter toltal of money you want to payment on your account:\n");
+    scanf("%d",&payment);
+    BankAccount::accBalance = payment + BankAccount::accBalance;
+}
+
+void BankAccount::withdrawalAcc(){
+    int withdrawal;
+    printf("enter toltal of money you want to withdraw :\n");
+    scanf("%d",&withdrawal);
+    if (BankAccount::accBalance >= withdrawal){
+        BankAccount::accBalance =  BankAccount::accBalance - withdrawal;
+    } else {
+        printf("Insufficient balance in the account\n");
+    }
+
+}
+void BankAccount::checkBalance(){
+    printf("hello %s,your account number is %d, balance is %d\n",BankAccount::accName,BankAccount::accNumber,BankAccount::accBalance);
+}
+
+int main(int argc, char const *argv[])
+{
+    BankAccount OCB;
+    OCB.setBankAcc();
+    BankAccount ACB;
+    ACB.setBankAcc();
+    OCB.paymentAcc();
+    OCB.checkBalance();
+    ACB.withdrawalAcc();
+    ACB.checkBalance();
+    return 0;
+}
