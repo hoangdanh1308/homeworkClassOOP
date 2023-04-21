@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <math.h>
+
+class Animals{
+    private:
+    char nameAnimals[20];
+    int ageAnimals;
+    int weightAnimals;
+    int heightAnimals;
+    public:
+    void setAnimals();
+    void getBMI();
+    void compareAge(Animals inputAnimal1, Animals inputAnimal2);
+    void compareWeight(Animals inputAnimal1, Animals inputAnimal);
+};
+
+void Animals::setAnimals(){
+    printf("enter name of animal:\n");
+    scanf("%s",Animals::nameAnimals);
+    printf("enter age of animal:\n");
+    scanf("%d",&(Animals::ageAnimals));
+    printf("enter weight of animal:\n");
+    scanf("%d",&(Animals::weightAnimals));
+    printf("enter height of animal:\n");
+    scanf("%d",&(Animals::heightAnimals));
+}
+
+void Animals::getBMI(){
+    float resultBMI;
+    resultBMI = (float)(Animals::weightAnimals)/(Animals::heightAnimals*Animals::heightAnimals);
+    printf("%s's BMI is %f\n",Animals::nameAnimals,resultBMI);
+}
+
+void Animals::compareAge(Animals inputAnimal1, Animals inputAnimal2){
+    if (inputAnimal1.ageAnimals > inputAnimal2.ageAnimals){
+        printf("%s is older than %s\n",inputAnimal1.nameAnimals,inputAnimal2.nameAnimals);
+    } else if(inputAnimal1.ageAnimals == inputAnimal2.ageAnimals){
+        printf("%s is equal to %s's age\n",inputAnimal1.nameAnimals,inputAnimal2.nameAnimals);
+    } else {
+        printf("%s is younger than %s\n",inputAnimal1.nameAnimals,inputAnimal2.nameAnimals);
+    }
+}
+
+void Animals::compareWeight(Animals inputAnimal1, Animals inputAnimal2){
+    if (inputAnimal1.weightAnimals > inputAnimal2.weightAnimals){
+        printf("%s is heavier than %s\n",inputAnimal1.nameAnimals,inputAnimal2.nameAnimals);
+    } else if(inputAnimal1.weightAnimals == inputAnimal2.weightAnimals){
+        printf("%s is equal to %s's weight\n",inputAnimal1.nameAnimals,inputAnimal2.nameAnimals);
+    } else {
+        printf("%s is lighter than %s\n",inputAnimal1.nameAnimals,inputAnimal2.nameAnimals);
+    }
+}
+
+int main(int argc, char const *argv[])
+{
+    Animals terrestrialAnimals;
+    Animals underwaterAnimals;
+    terrestrialAnimals.setAnimals();
+    terrestrialAnimals.getBMI();
+    underwaterAnimals.setAnimals();
+    terrestrialAnimals.compareAge(terrestrialAnimals,underwaterAnimals);
+    underwaterAnimals.compareWeight(underwaterAnimals,terrestrialAnimals);
+    return 0;
+}
+
