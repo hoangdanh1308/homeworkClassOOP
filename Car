@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <math.h>
+enum ColorCar{
+    WHITE,
+    RED,
+    BLACK,
+    BLUE,
+    YELLOW,
+    GREEN,
+    ORANGE
+};
+enum EngineType{
+    I4,
+    I6,
+    V6,
+    V8,
+    V12,
+    VV
+};
+char const *color[] = {
+    "WHITE",
+    "RED",
+    "BLACK",
+    "BLUE",
+    "YELLOW",
+    "GREEN",
+    "ORANGE"
+};
+char const *engine[] = {
+    "I4",
+    "I6",
+    "V6",
+    "V8",
+    "V12",
+    "VV"
+};
+class Car{
+    private:
+    enum ColorCar colorCar;
+    enum EngineType engineType;
+    long traveledKM;
+    public:
+    Car(enum ColorCar colorCar, enum EngineType engineType, long traveledKM);
+    void checkTraveledKM();
+    void getInformationCar();
+    void getMaintenanceCost();
+};
+
+Car::Car(enum ColorCar colorCar, enum EngineType engineType, long traveledKM){
+    Car::colorCar = colorCar;
+    Car::engineType = engineType;
+    Car::traveledKM = traveledKM;
+}
+
+void Car::checkTraveledKM(){
+    printf("your car has traveled %d KM\n",Car::traveledKM);
+}
+
+void Car::getInformationCar(){
+    printf("**Car Information**\nColor is: %s\n",color[Car::colorCar]);
+    printf("Type of car is %s\n",engine[Car::engineType]);
+    printf("your car has traveled %d KM\n",Car::traveledKM);
+}
+
+void Car::getMaintenanceCost(){
+    if(Car::traveledKM > 0 && Car::traveledKM < 1000){
+        printf("Cost is 10$");
+    } else if(Car::traveledKM < 5000){
+        printf("Cost is 20$");
+    } else if(Car::traveledKM < 10000){
+        printf("Cost is 25$");
+    } else if(Car::traveledKM < 15000){
+        printf("Cost is 30$");
+    } else if(Car::traveledKM < 20000){
+        printf("Cost is 40$");
+    } else {printf("Cost is 50$");}
+}
+int main(int argc, char const *argv[])
+{
+    Car audi(WHITE, I4, 20000);
+    audi.checkTraveledKM();
+    audi.getInformationCar();
+    audi.getMaintenanceCost();
+    return 0;
+}
